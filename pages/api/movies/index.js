@@ -19,19 +19,19 @@ if (process.env.NODE_ENV === "development") {
     clientPromise = client.connect();
 }  
 
-const MoviesFromDB = ({ movies }) => {
+// const MoviesFromDB = ({ movies }) => {
 
-    // return (
-    //     <div>
-    //         <h1>Hello from DB</h1>
-    //     </div>
-    // )
-}
+//     // return (
+//     //     <div>
+//     //         <h1>Hello from DB</h1>
+//     //     </div>
+//     // )
+// }
 
-export default MoviesFromDB
+// export default MoviesFromDB
 
 
-export const getServerSideProps = async () => {
+export default async function handler(req, res) {
     try {
         const client = await clientPromise;
         const db = client.db("sample_mflix");
@@ -44,16 +44,16 @@ export const getServerSideProps = async () => {
         console.log("typeof movies", typeof movies);
         console.log("movies 1", movies[0]);
         console.log("movies 2", Object.keys(movies));
-        // res.status(200).json({ movies });
+        res.status(200).json({ movies });
         // props: {JSON.parse(JSON.stringify(res.status(200).json({ movies })))};
-        return {
-            props: { movies: JSON.parse(JSON.stringify(movies)) },
-        };
+        // return {
+        //     props: { movies: JSON.parse(JSON.stringify(movies)) },
+        // };
     } catch (e) {
         console.error(e);
-        // res.status(500).json({ error: 'Error fetching movies' });
+        res.status(500).json({ error: 'Error fetching movies' });
         // props: { movies: [] }
-        return { props: { movies: [] } };
+        // return { props: { movies: [] } };
     }
 };
 

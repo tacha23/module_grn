@@ -6,9 +6,9 @@ import React, { useState, useEffect } from 'react';
 
 // import MoviesFromDB from '../../../pages/api/movies';
 
-const MoviesPage = ({ movies }) => {
+const MoviesPage = () => {
   // State to store movies data
-  const [moviesData, setMoviesData] = useState(movies);
+  const [moviesData, setMoviesData] = useState([]);
 
   // Fetch movies data on component mount
   useEffect(() => {
@@ -35,9 +35,9 @@ const MoviesPage = ({ movies }) => {
       <h1>Movies Page</h1>
       <ul>
         {/* Render movies data */}
-        {/* {moviesData.map((movie) => (
+        {moviesData.map((movie) => (
           <li key={movie._id}>{movie.title}</li>
-        ))} */}
+        ))}
       </ul>
     </div>
   );
